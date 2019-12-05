@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">PassNGo</string>
     <string name="action_settings">Settings</string>
-    <string name="login_to_your_account" />
-    <string name="password" />
+    <string name="login_to_your_account" >welcome to PassNGo!</string>
+    <string name="password" >password</string>
     <string name="username" />
-    <string name="login" />
-    <string name="email" />
+    <string name="login">login</string>
+    <string name="InputEmail">email</string>
 </resources>
