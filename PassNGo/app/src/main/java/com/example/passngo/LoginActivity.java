@@ -1,12 +1,6 @@
 package com.example.passngo;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +10,7 @@ import java.util.Map;
 import java.util.HashMap;
 import org.json.JSONObject;
 
+import com.android.passngo.R;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,7 +21,10 @@ import com.android.volley.toolbox.Volley;
 import android.content.Intent;
 import org.json.JSONException;
 import android.view.View;
+
+
 public class LoginActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +41,17 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onBtnLoginClicked(View view){
         //Toast.makeText( this, "Logging In", Toast.LENGTH_SHORT).show();
-        EditText txtUsername = (EditText)findViewById(R.id.InputEmail);
+        EditText txtUsername = (EditText)findViewById(R.id.InputUser);
         EditText txtPassword = (EditText)findViewById(R.id.InputPassword);
-        String email = txtUsername.getText().toString();
+        String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
 
         HashMap<String, String> message = new HashMap<>();
-        message.put("email", email);
+        message.put("username", username);
         message.put("password", password);
+
+        //JSONObject jsonMessage = new JSONObject(message);
+        //Toast.makeText( this, jsonMessage.toString(), Toast.LENGTH_SHORT).show();
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
@@ -61,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         showMessage("Authorized!");
                         try {
-                            String email = response.getString("email");
-                            int id = response.getInt("id");
-                            goToContactsActivity(id, email);
+                            String username = response.getString("username");
+                            int user_id = response.getInt("user_id");
+                            goToContactsActivity(user_id, username);
                         }catch (JSONException e){
                             e.printStackTrace();
                         }
@@ -81,10 +82,10 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void goToContactsActivity(int id, String email){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("id", id);
-        intent.putExtra("email", email);
+    private void goToContactsActivity(int user_id, String username){
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("user_id", user_id);
+        intent.putExtra("username", username);
         startActivity(intent);
 
     }

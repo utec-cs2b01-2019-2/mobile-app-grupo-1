@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context="com.example.passngo.LoginActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_to_your_account"
-        app:layout_constraintBottom_toTopOf="@+id/InputEmail"
+        app:layout_constraintBottom_toTopOf="@+id/InputUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -33,14 +33,14 @@
         app:layout_constraintVertical_bias="0.568" />
 
     <EditText
-        android:id="@+id/InputEmail"
+        android:id="@+id/InputUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:autofillHints="yes"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="@string/InputEmail"
-        android:inputType="textEmailAddress"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/InputPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
