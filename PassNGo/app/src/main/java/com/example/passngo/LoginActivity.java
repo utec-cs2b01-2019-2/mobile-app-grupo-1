@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = txtPassword.getText().toString();
 
         HashMap<String, String> message = new HashMap<>();
-        message.put("username", username);
+        message.put("email", username);
         message.put("password", password);
 
         //JSONObject jsonMessage = new JSONObject(message);
@@ -62,9 +62,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         showMessage("Authorized!");
                         try {
-                            String username = response.getString("username");
+                            String email = response.getString("email");
                             int user_id = response.getInt("user_id");
-                            goToContactsActivity(user_id, username);
+                            String fullname = response.getString("fullname");
+                            goToHomeActivity(user_id, email, fullname);
                         }catch (JSONException e){
                             e.printStackTrace();
                         }
@@ -82,10 +83,11 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void goToContactsActivity(int user_id, String username){
+    private void goToHomeActivity(int user_id, String username, String fullname){
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("user_id", user_id);
         intent.putExtra("username", username);
+        intent.putExtra("fullname", fullname);
         startActivity(intent);
 
     }

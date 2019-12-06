@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Chat-Mobile</string>
-    <string name="login_to_your_account">Login to your account</string>
-    <string name="password">Password</string>
-    <string name="enter_username">enter username</string>
-    <string name="username">Username</string>
+    <string name="app_name">PassNGo!</string>
+    <string name="login_to_your_account">Welcome to PassNGo!</string>
+    <string name="password">Enter your Password</string>
+    <string name="email">Enter your E-mail</string>
     <string name="login">Login</string>
+    <string name="welcome">Welcome,</string>
+    <string name="user">user</string>
 </resources>
