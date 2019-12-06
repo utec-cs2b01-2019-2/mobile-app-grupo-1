@@ -27,6 +27,7 @@ import static java.lang.String.valueOf;
 
 
 public class HomeActivity extends AppCompatActivity {
+    String newBalance;
 
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
@@ -44,11 +45,10 @@ public class HomeActivity extends AppCompatActivity {
 
         FullnameDisplay.setText(getIntent().getExtras().getString("fullname"));
         Balance.setAmount(Float.parseFloat(getIntent().getExtras().getString("balance")));
-
+        newBalance=getIntent().getExtras().getString("balance");
         //refreshBalance(Balance);
 
     }
-
 
     public void addBalance(View view){
         final MoneyTextView Balance = (MoneyTextView) findViewById(R.id.Balance);
@@ -58,9 +58,9 @@ public class HomeActivity extends AppCompatActivity {
         message.put("id", Integer.toString(id));
         message.put("addbalance", Float.toString(addbalance));
 
-        final JsonObjectRequest request = new JsonObjectRequest(
+        JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                "http://10.0.2.2:8000/balance/add",
+                "https://passndgo.herokuapp.com/balance/add",
                 new JSONObject(message),
 
                 new Response.Listener<JSONObject>() {
@@ -69,55 +69,31 @@ public class HomeActivity extends AppCompatActivity {
                         try {
                             String currentbalance = response.getString("balance");
                             Balance.setAmount(Float.parseFloat(currentbalance));
-
+                            newBalance = currentbalance;
+                            showMessage(newBalance);
 
                         } catch (JSONException e) {
                             Balance.setAmount(-1);
                         }
+                        Balance.setAmount(Float.parseFloat(newBalance));
                     }
+
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        showMessage("Balance not found!");
+                        showMessage("No response");
                     }
                 });
-
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
+        //showMessage(newBalance);
+
     }
 
+    public void refreshBalance(MoneyTextView Balance, String currentbalance) {
 
-
-    public void refreshBalance(View view) {
-        final MoneyTextView Balance = (MoneyTextView) findViewById(R.id.Balance);
-        // recheck balance
-        final JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET,
-                "http://10.0.2.2:8000/balance/current",
-                null,
-
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String currentbalance = response.getString("balance");
-                            Balance.setAmount(Float.parseFloat(currentbalance));
-
-                        } catch (JSONException e) {
-                            Balance.setAmount(-1);
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        showMessage("Couldn't refresh!");
-                    }
-                });
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
+        Balance.setAmount(Float.parseFloat(currentbalance));
     }
 
 }

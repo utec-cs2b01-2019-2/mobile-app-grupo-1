@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                "http://10.0.2.2:8000/auth",
+                "https://passndgo.herokuapp.com/auth",
                 new JSONObject(message),
                 new Response.Listener<JSONObject>() {
                     @Override
