@@ -22,11 +22,67 @@
         android:id="@+id/FullnameDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:textSize="30sp"
+        android:layout_marginTop="72dp"
         android:text="@string/user"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.CardView
+
+        android:onClick="refreshBalance"
+        android:id="@+id/cardView"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="142dp"
+            android:layout_gravity="center"
+            android:text="Current Balance"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.761" />
+
+        <org.fabiomsr.moneytextview.MoneyTextView
+            android:id="@+id/Balance"
+            android:layout_width="221dp"
+            android:layout_height="61dp"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed-medium"
+            app:baseTextSize="50sp"
+            app:decimalGravity="top"
+            app:decimalSeparator="."
+            app:symbol="S/."
+            app:symbolGravity="start|top" />
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/addbalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addBalance"
+
+        android:text="add 10 PEN"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.647" />
+
+
 </android.support.constraint.ConstraintLayout>

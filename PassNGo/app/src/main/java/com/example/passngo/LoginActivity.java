@@ -65,7 +65,9 @@ public class LoginActivity extends AppCompatActivity {
                             String email = response.getString("email");
                             int user_id = response.getInt("user_id");
                             String fullname = response.getString("fullname");
-                            goToHomeActivity(user_id, email, fullname);
+                            String currentbalance = response.getString("balance");
+                            goToHomeActivity(user_id, email, fullname, currentbalance);
+
                         }catch (JSONException e){
                             e.printStackTrace();
                         }
@@ -83,11 +85,12 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void goToHomeActivity(int user_id, String username, String fullname){
+    private void goToHomeActivity(int user_id, String username, String fullname, String currentbalance){
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("user_id", user_id);
         intent.putExtra("username", username);
         intent.putExtra("fullname", fullname);
+        intent.putExtra("balance", currentbalance);
         startActivity(intent);
 
     }
